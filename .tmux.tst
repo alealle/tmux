@@ -53,8 +53,9 @@ set -g status-keys vi
 set -g status-position top # [top, bottom]
 
 # Set status bar background and foreground color.
-set -g status-style fg=colour136,bg="#002b36"
+#set -g status-style fg=colour136,bg="#002b36"
 
+#set -g @colors-solarized 'dark'
 # Set left side status bar length and style
 set -g status-left-length 120
 set -g status-left-style default
@@ -73,30 +74,30 @@ set -g status-right-length 180
 set -g status-right-style default
 # Display the weather
 # Display the cpu load (Mac OS)
-set -g status-right "#[fg=green,bg=default,bright] 🕸 #{network_bandwidth}"
+set -g status-right "#[fg=darkgray,bg=default]🕸 #{network_bandwidth}"
 set -ag status-right "  #(top -l 1 | grep -E "^CPU" | sed 's/.*://') #[default]"
 set -ag status-right "#{weather}"
 # Display the time
 #set -ag status-right "#[fg=colour172,bright,bg=default] ⌚︎%l:%M %p #[default]"
 
 # Display the hostname
-#set -ag status-right "#[fg=cyan,bg=default] ☺  #H #[default]"
+# set -ag status-right "#[fg=cyan,bg=default] ☺  #H #[default]"
 
 # Set the inactive window color and style
-set -g window-status-style fg=colour244,bg=default
-set -g window-status-format ' #I #W '
+#set -g window-status-style fg=colour244,bg=default
+#set -g window-status-format ' #I #W '
 
 # Set the active window color and style
-set -g window-status-current-style fg=black,bg=colour136
-set -g window-status-current-format ' #I #W '
+#set -g window-status-current-style fg=black,bg=colour136
+#set -g window-status-current-format ' #I #W '
 
 # Colors for pane borders(default)
-setw -g pane-border-style fg=green,bg=black
-setw -g pane-active-border-style fg=white,bg=black
+#setw -g pane-border-style fg=green,bg=black
+#setw -g pane-active-border-style fg=white,bg=black
 
 # Active pane normal, other shaded out
-setw -g window-style fg=colour240,bg=colour235
-setw -g window-active-style fg=white,bg=black
+#setw -g window-style fg=colour240,bg=colour235
+#setw -g window-active-style fg=white,bg=black
 
 # Set a larger scroll back
 set-option -g history-limit 100000
@@ -116,6 +117,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'xamut/tmux-network-bandwidth'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'timtorchen/tmux-weather'
+set -g @plugin 'seebi/tmux-colors-solarized'
 #set -g @plugin 'aaronpowell/tmux-weather'
 # Other examples:
 # set -g @plugin 'github_username/plugin_name'
@@ -125,3 +127,11 @@ run '~/.tmux/plugins/tpm/tpm'
 
 # Mouse mode
 set -g mouse on
+
+# weather
+# use ip to get location by default
+set-option -g @tmux-weather-location "Sao Paulo"
+
+# set "c" for Celsius, and "f" for Fahrenheit.
+# default units is "c"
+set-option -g @tmux-weather-units "c"
